@@ -1,0 +1,28 @@
+{{ define "title" -}}
+{{ .Title | title }}
+{{- end }}
+{{ define "main" -}}
+{{ .Content }}
+<div>
+{{- range .Pages }}
+<div class="section_container">
+	<div class="section_title" id="section_{{ .Title }}">
+		<a href="{{ .RelPermalink }}">{{ upper .Title }}</a>
+		{{- if .Param "authorsinlist" }}
+		{{ with .Params.authors }}
+			by 
+			{{ delimit . ", " " and " }}
+		{{end}}
+		{{ end -}}
+	</div>
+	<div class="section_contents">
+		
+		{{- range .Pages}}
+		<div class="section_content">{{ .Title }} </div>
+		{{- end }}
+		
+	</div>
+</div>
+{{- end }}
+</div>
+{{- end }}
